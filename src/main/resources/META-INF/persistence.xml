@@ -4,7 +4,11 @@
              version="2.0">
     <persistence-unit name="org.chrisguitarguy.hibernateplay">
         <description>Testing out the JPA API</description>
+
+        <class>org.chrisguitarguy.hibernateplay.Author</class>
+
         <properties>
+            <!-- connection details -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/hibernate" />
             <property name="javax.persistence.jdbc.user" value="chris" />
