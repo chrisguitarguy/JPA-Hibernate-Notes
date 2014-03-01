@@ -1,0 +1,32 @@
+apply plugin: "java"
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://repository.jboss.org/nexus/content/groups/public'
+    }
+}
+
+dependencies {
+    compile(
+        "org.postgresql:postgresql:9.3-1101-jdbc41",
+        "org.hibernate:hibernate-entitymanager:4.3.2.Final",
+    )
+    testCompile(
+        "junit:junit:4.11",
+        "org.postgresql:postgresql:9.3-1101-jdbc41",
+        "org.hibernate:hibernate-entitymanager:4.3.2.Final",
+    )
+    testRuntime(
+        "org.postgresql:postgresql:9.3-1101-jdbc41",
+        "org.hibernate:hibernate-entitymanager:4.3.2.Final",
+    )
+}
+
+compileJava {
+    options.compilerArgs = ["-Xlint:all"]
+}
+
+compileTestJava {
+    options.compilerArgs = ["-Xlint:all"]
+}
