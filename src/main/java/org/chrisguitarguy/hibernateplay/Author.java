@@ -3,6 +3,7 @@ package org.chrisguitarguy.hibernateplay;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -22,8 +23,11 @@ class Author {
         lastName = last;
     }
 
+    // See: http://stackoverflow.com/a/11902460/1031898
+    // IDENTITY here causes postgress to use a BIGSERIAL (or SERIAL) type
+    // I suspect it does the same in MySQL (using AUTO_INCREMENT)
     @Id
-    @GeneratedValue // should default to GeneratedStrategy.AUTO
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id", nullable=false)
     public Long getId() {
         return id;
