@@ -42,6 +42,6 @@ public class HibernateIllustrationTest {
             Assert.assertNotNull(a.getFirstName());
         }
         em.getTransaction().commit();
-        em.close()
+        em.close();
     }
 }
