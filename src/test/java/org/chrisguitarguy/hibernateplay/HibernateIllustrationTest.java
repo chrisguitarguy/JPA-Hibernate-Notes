@@ -27,7 +27,7 @@ public class HibernateIllustrationTest {
     }
 
     @Test
-    public void testSaveGetAuthors() throws Exception {
+    public void testSaveGetRemoveAuthors() throws Exception {
         EntityManager em = emFactory.createEntityManager();
         em.getTransaction().begin();
         em.persist(new Author("A", "Person"));
@@ -35,8 +35,8 @@ public class HibernateIllustrationTest {
         em.getTransaction().commit();
         em.close();
 
+        Long authorId = null;
         em = emFactory.createEntityManager();
-        em.getTransaction().begin();
         /* This causes some unchecked warnings
         Query q = em.createQuery("from Author", Author.class);
         List<Author> result = q.getResultList();
@@ -47,8 +47,19 @@ public class HibernateIllustrationTest {
         List<Author> result = q.getResultList();
         for (Author a : result) {
             Assert.assertNotNull(a.getFirstName());
+            authorId = a.getId();
         }
-        em.getTransaction().commit();
         em.close();
+
+        if (null != authorId) {
+            em = emFactory.createEntityManager();
+            Author a = em.find(Author.class, authorId);
+            em.getTransaction().begin();
+            if (null != a) {
+                em.remove(a);
+            }
+            em.getTransaction().commit();
+            em.close();
+        }
     }
 }
