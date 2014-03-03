@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,7 +37,13 @@ public class HibernateIllustrationTest {
 
         em = emFactory.createEntityManager();
         em.getTransaction().begin();
+        /* This causes some unchecked warnings
         Query q = em.createQuery("from Author", Author.class);
+        List<Author> result = q.getResultList();
+
+        Source: http://stackoverflow.com/a/8790916/1031898
+        You can get around those like this: */
+        TypedQuery<Author> q = em.createQuery("FROM Author", Author.class);
         List<Author> result = q.getResultList();
         for (Author a : result) {
             Assert.assertNotNull(a.getFirstName());
