@@ -6,6 +6,7 @@
         <description>Testing out the JPA API</description>
 
         <class>org.chrisguitarguy.hibernateplay.Author</class>
+        <class>org.chrisguitarguy.hibernateplay.Post</class>
 
         <properties>
             <!-- connection details -->
