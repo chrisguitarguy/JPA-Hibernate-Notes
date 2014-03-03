@@ -23,6 +23,12 @@ dependencies {
     )
 }
 
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
 compileJava {
     options.compilerArgs = ["-Xlint:all"]
 }
