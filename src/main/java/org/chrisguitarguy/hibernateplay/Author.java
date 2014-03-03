@@ -10,8 +10,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="authors")
 class Author {
+    // See: http://stackoverflow.com/a/11902460/1031898
+    // IDENTITY here causes postgress to use a BIGSERIAL (or SERIAL) type
+    // I suspect it does the same in MySQL (using AUTO_INCREMENT)
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id", nullable=false)
     private Long id;
+
+    @Column(name="first_name", nullable=false)
     private String firstName;
+
+    @Column(name="last_name", nullable=true)
     private String lastName;
 
     public Author() {
@@ -23,12 +33,6 @@ class Author {
         lastName = last;
     }
 
-    // See: http://stackoverflow.com/a/11902460/1031898
-    // IDENTITY here causes postgress to use a BIGSERIAL (or SERIAL) type
-    // I suspect it does the same in MySQL (using AUTO_INCREMENT)
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id", nullable=false)
     public Long getId() {
         return id;
     }
@@ -37,7 +41,6 @@ class Author {
         this.id = id;
     }
 
-    @Column(name="first_name", nullable=false)
     public String getFirstName() {
         return firstName;
     }
@@ -46,7 +49,6 @@ class Author {
         firstName = first;
     }
 
-    @Column(name="last_name", nullable=true)
     public String getLastName() {
         return lastName;
     }
