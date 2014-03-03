@@ -14,10 +14,18 @@
             <property name="javax.persistence.jdbc.user" value="chris" />
             <property name="javax.persistence.jdbc.password" value="" />
 
-            <!-- schema generation -->
+            <!--
+                 Schema Generation
+
+                 if these are turned "on" the scripts are create every time
+                 an entity manager factory is created. Not very desirable, but
+                 interesting!
+            -->
+            <!--
             <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create" />
             <property name="javax.persistence.schema-generation.scripts.create-target" value="META-INF/create-script.sql" />
             <property name="javax.persistence.schema-generation.scripts.drop-target" value="META-INF/drop-script.sql" />
+            -->
 
             <property name="hibernate.show_sql" value="true" />
         </properties>
